@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Learn Pro Typing</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500;700&family=Roboto:wght@300;400;500&display=swap"
+    rel="stylesheet"
+  />
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header class="header">
+    <div class="logo">
+      <span class="logo-icon">⌨</span>
+      <span class="logo-text">Learn <span class="logo-accent">Pro</span> Typing</span>
+    </div>
+    <nav class="nav-stats">
+      <!-- Home mode stats -->
+      <div class="home-nav" id="home-nav">
+        <button class="nav-btn" id="nav-home">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+            <polyline points="9,22 9,12 15,12 15,22"/>
+          </svg>
+          Home
+        </button>
+        <button class="nav-btn" id="nav-stats">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 19c-5 0-8-3-8-6s3-6 8-6c4.5 0 7.5 2.5 8 6"/>
+            <path d="M12 21l3-9"/>
+          </svg>
+          Stats
+        </button>
+      </div>
+
+      <!-- Game mode stats -->
+      <div class="game-stats" id="game-stats" style="display: none;">
+        <div class="stat-chip" id="header-wpm">
+          <span class="stat-label">WPM</span>
+          <span class="stat-value" id="live-wpm">0</span>
+        </div>
+        <div class="stat-chip" id="header-acc">
+          <span class="stat-label">ACC</span>
+          <span class="stat-value" id="live-acc">100%</span>
+        </div>
+        <div class="stat-chip timer-chip" id="header-time">
+          <span class="stat-label">TIME</span>
+          <span class="stat-value" id="live-timer">60</span>
+        </div>
+      </div>
+
+      <button class="theme-toggle" id="theme-toggle" title="Toggle theme" aria-label="Toggle dark/light theme">
+        <span class="sun-icon">☀️</span>
+        <span class="moon-icon">🌙</span>
+      </button>
+    </nav>
+  </header>
+
+  <!-- ===== HOME PAGE ===== -->
+  <main class="home-container" id="home-container">
+    <div class="hero-section">
+      <h1 class="hero-title">Master Your Typing Skills</h1>
+      <p class="hero-subtitle">Choose your training mode and start improving your typing speed and accuracy</p>
+    </div>
+
+    <div class="modes-grid">
+      <!-- Practice Mode -->
+      <div class="mode-card" id="mode-practice">
+        <div class="mode-icon">📝</div>
+        <h3 class="mode-title">Practice</h3>
+        <p class="mode-description">Free typing practice with custom texts and no time pressure</p>
+        <div class="mode-features">
+          <span class="feature-tag">No Timer</span>
+          <span class="feature-tag">Custom Text</span>
+          <span class="feature-tag">Relaxed</span>
+        </div>
+      </div>
+
+      <!-- Test Mode -->
+      <div class="mode-card" id="mode-test">
+        <div class="mode-icon">⏱️</div>
+        <h3 class="mode-title">Speed Test</h3>
+        <p class="mode-description">Timed typing tests to measure your WPM and accuracy</p>
+        <div class="mode-features">
+          <span class="feature-tag">60s Timer</span>
+          <span class="feature-tag">WPM Test</span>
+          <span class="feature-tag">Challenging</span>
+        </div>
+      </div>
+
+      <!-- Games Mode -->
+      <div class="mode-card" id="mode-games">
+        <div class="mode-icon">🎮</div>
+        <h3 class="mode-title">Games</h3>
+        <p class="mode-description">Fun typing games and challenges to make learning enjoyable</p>
+        <div class="mode-features">
+          <span class="feature-tag">Fun</span>
+          <span class="feature-tag">Interactive</span>
+          <span class="feature-tag">Gamified</span>
+        </div>
+      </div>
+
+      <!-- Settings -->
+      <div class="mode-card" id="mode-settings">
+        <div class="mode-icon">⚙️</div>
+        <h3 class="mode-title">Settings</h3>
+        <p class="mode-description">Customize your typing experience and preferences</p>
+        <div class="mode-features">
+          <span class="feature-tag">Customize</span>
+          <span class="feature-tag">Preferences</span>
+          <span class="feature-tag">Options</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Stats -->
+    <div class="quick-stats" id="quick-stats">
+      <h3 class="stats-title">Your Progress</h3>
+      <div class="stats-row">
+        <div class="stat-item">
+          <span class="stat-number" id="best-wpm">0</span>
+          <span class="stat-label">Best WPM</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number" id="avg-acc">0%</span>
+          <span class="stat-label">Avg Accuracy</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number" id="tests-taken">0</span>
+          <span class="stat-label">Tests Taken</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number" id="time-typed">0m</span>
+          <span class="stat-label">Time Typed</span>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ===== TYPING GAME PAGE ===== -->
+  <main class="main-container" id="game-container" style="display: none;">
+    <!-- Back Button -->
+    <div class="game-header">
+      <button class="btn btn-ghost" id="btn-back">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="m12 19-7-7 7-7"/>
+          <path d="m19 12H5"/>
+        </svg>
+        Back to Home
+      </button>
+      <div class="game-mode-title" id="game-mode-title">Speed Test</div>
+    </div>
+
+    <!-- Instruction Banner -->
+    <div class="instruction-banner" id="instruction-banner">
+      <span class="pulse-dot"></span>
+      Click anywhere or press any key to start typing…
+    </div>
+
+    <!-- Typing Area -->
+    <div class="typing-area-wrapper">
+      <div class="typing-area" id="typing-area" tabindex="0" aria-label="Typing practice area">
+        <div class="words-container" id="words-container"></div>
+      </div>
+      <div class="caret" id="caret"></div>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="action-bar">
+      <button class="btn btn-ghost" id="btn-restart" title="Restart (Esc)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M1 4v6h6M23 20v-6h-6"/>
+          <path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"/>
+        </svg>
+        Restart <kbd>Esc</kbd>
+      </button>
+      <button class="btn btn-ghost" id="btn-new-text" title="New Text">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 20h9M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
+        </svg>
+        New Text
+      </button>
+    </div>
+
+    <!-- Visual Keyboard -->
+    <div class="keyboard-section">
+      <h3 class="keyboard-title">Visual Keyboard</h3>
+      <div class="keyboard" id="keyboard">
+        <!-- Keyboard rows remain the same -->
+        <div class="key-row" id="row-number">
+          <div class="key" data-key="`">`</div>
+          <div class="key" data-key="1">1</div>
+          <div class="key" data-key="2">2</div>
+          <div class="key" data-key="3">3</div>
+          <div class="key" data-key="4">4</div>
+          <div class="key" data-key="5">5</div>
+          <div class="key" data-key="6">6</div>
+          <div class="key" data-key="7">7</div>
+          <div class="key" data-key="8">8</div>
+          <div class="key" data-key="9">9</div>
+          <div class="key" data-key="0">0</div>
+          <div class="key" data-key="-">-</div>
+          <div class="key" data-key="=">=</div>
+          <div class="key key-wide" data-key="Backspace">⌫</div>
+        </div>
+
+        <div class="key-row">
+          <div class="key key-tab" data-key="Tab">Tab</div>
+          <div class="key" data-key="q">Q</div>
+          <div class="key" data-key="w">W</div>
+          <div class="key" data-key="e">E</div>
+          <div class="key" data-key="r">R</div>
+          <div class="key" data-key="t">T</div>
+          <div class="key" data-key="y">Y</div>
+          <div class="key" data-key="u">U</div>
+          <div class="key" data-key="i">I</div>
+          <div class="key" data-key="o">O</div>
+          <div class="key" data-key="p">P</div>
+          <div class="key" data-key="[">[</div>
+          <div class="key" data-key="]">]</div>
+          <div class="key key-wide" data-key="\">\</div>
+        </div>
+
+        <div class="key-row">
+          <div class="key key-caps" data-key="CapsLock">Caps</div>
+          <div class="key" data-key="a">A</div>
+          <div class="key" data-key="s">S</div>
+          <div class="key" data-key="d">D</div>
+          <div class="key" data-key="f">F</div>
+          <div class="key" data-key="g">G</div>
+          <div class="key" data-key="h">H</div>
+          <div class="key" data-key="j">J</div>
+          <div class="key" data-key="k">K</div>
+          <div class="key" data-key="l">L</div>
+          <div class="key" data-key=";">;</div>
+          <div class="key" data-key="'">'</div>
+          <div class="key key-enter" data-key="Enter">Enter</div>
+        </div>
+
+        <div class="key-row">
+          <div class="key key-shift-l" data-key="Shift">Shift</div>
+          <div class="key" data-key="z">Z</div>
+          <div class="key" data-key="x">X</div>
+          <div class="key" data-key="c">C</div>
+          <div class="key" data-key="v">V</div>
+          <div class="key" data-key="b">B</div>
+          <div class="key" data-key="n">N</div>
+          <div class="key" data-key="m">M</div>
+          <div class="key" data-key=",">,</div>
+          <div class="key" data-key=".">.</div>
+          <div class="key" data-key="/">/</div>
+          <div class="key key-shift-r" data-key="Shift">Shift</div>
+        </div>
+
+        <div class="key-row row-bottom">
+          <div class="key key-ctrl" data-key="Control">Ctrl</div>
+          <div class="key key-alt" data-key="Alt">Alt</div>
+          <div class="key key-space" data-key=" ">Space</div>
+          <div class="key key-alt" data-key="Alt">Alt</div>
+          <div class="key key-ctrl" data-key="Control">Ctrl</div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ===== SETTINGS PAGE ===== -->
+  <main class="settings-container" id="settings-container" style="display: none;">
+    <div class="settings-header">
+      <button class="btn btn-ghost" id="settings-back">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="m12 19-7-7 7-7"/>
+          <path d="m19 12H5"/>
+        </svg>
+        Back
+      </button>
+      <h1 class="settings-title">Settings</h1>
+    </div>
+
+    <div class="settings-grid">
+      <!-- Typing Settings -->
+      <div class="settings-section">
+        <h3 class="section-title">🎯 Typing Settings</h3>
+        
+        <div class="setting-item">
+          <label class="setting-label">Test Duration</label>
+          <select class="setting-select" id="test-duration">
+            <option value="30">30 seconds</option>
+            <option value="60" selected>60 seconds</option>
+            <option value="120">2 minutes</option>
+            <option value="300">5 minutes</option>
+          </select>
+        </div>
+
+        <div class="setting-item">
+          <label class="setting-label">Difficulty Level</label>
+          <select class="setting-select" id="difficulty-level">
+            <option value="easy">Easy - Common words</option>
+            <option value="medium" selected>Medium - Mixed text</option>
+            <option value="hard">Hard - Complex passages</option>
+            <option value="expert">Expert - Programming code</option>
+          </select>
+        </div>
+
+        <div class="setting-item">
+          <label class="setting-label">Font Size</label>
+          <select class="setting-select" id="font-size">
+            <option value="small">Small (1.1rem)</option>
+            <option value="medium" selected>Medium (1.35rem)</option>
+            <option value="large">Large (1.6rem)</option>
+          </select>
+        </div>
+
+        <div class="setting-item setting-toggle">
+          <label class="setting-label">Show Keyboard</label>
+          <input type="checkbox" id="show-keyboard" checked>
+          <span class="toggle-slider"></span>
+        </div>
+
+        <div class="setting-item setting-toggle">
+          <label class="setting-label">Sound Effects</label>
+          <input type="checkbox" id="sound-effects">
+          <span class="toggle-slider"></span>
+        </div>
+      </div>
+
+      <!-- Display Settings -->
+      <div class="settings-section">
+        <h3 class="section-title">🎨 Display Settings</h3>
+        
+        <div class="setting-item">
+          <label class="setting-label">Theme</label>
+          <select class="setting-select" id="theme-select">
+            <option value="dark" selected>Dark</option>
+            <option value="light">Light</option>
+            <option value="auto">Auto (System)</option>
+          </select>
+        </div>
+
+        <div class="setting-item">
+          <label class="setting-label">Caret Style</label>
+          <select class="setting-select" id="caret-style">
+            <option value="line" selected>Line</option>
+            <option value="block">Block</option>
+            <option value="underline">Underline</option>
+          </select>
+        </div>
+
+        <div class="setting-item setting-toggle">
+          <label class="setting-label">Smooth Caret</label>
+          <input type="checkbox" id="smooth-caret" checked>
+          <span class="toggle-slider"></span>
+        </div>
+
+        <div class="setting-item setting-toggle">
+          <label class="setting-label">Show Timer Warning</label>
+          <input type="checkbox" id="timer-warning" checked>
+          <span class="toggle-slider"></span>
+        </div>
+      </div>
+
+      <!-- Game Settings -->
+      <div class="settings-section">
+        <h3 class="section-title">🎮 Game Settings</h3>
+        
+        <div class="setting-item setting-toggle">
+          <label class="setting-label">Stop on Error</label>
+          <input type="checkbox" id="stop-on-error">
+          <span class="toggle-slider"></span>
+        </div>
+
+        <div class="setting-item setting-toggle">
+          <label class="setting-label">Quick Restart</label>
+          <input type="checkbox" id="quick-restart" checked>
+          <span class="toggle-slider"></span>
+        </div>
+
+        <div class="setting-item setting-toggle">
+          <label class="setting-label">Auto Start Next</label>
+          <input type="checkbox" id="auto-start-next">
+          <span class="toggle-slider"></span>
+        </div>
+
+        <div class="setting-item">
+          <label class="setting-label">Statistics Tracking</label>
+          <select class="setting-select" id="stats-tracking">
+            <option value="session">Session Only</option>
+            <option value="local" selected>Save Locally</option>
+            <option value="none">Disabled</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Data Settings -->
+      <div class="settings-section">
+        <h3 class="section-title">📊 Data Settings</h3>
+        
+        <div class="setting-item">
+          <button class="btn btn-ghost" id="export-data">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+              <polyline points="7,10 12,15 17,10"/>
+              <line x1="12" y1="15" x2="12" y2="3"/>
+            </svg>
+            Export Statistics
+          </button>
+        </div>
+
+        <div class="setting-item">
+          <button class="btn btn-ghost" id="reset-stats">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M1 4v6h6M23 20v-6h-6"/>
+              <path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"/>
+            </svg>
+            Reset All Statistics
+          </button>
+        </div>
+
+        <div class="setting-item">
+          <button class="btn btn-ghost" id="clear-data">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="3,6 5,6 21,6"/>
+              <path d="m19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+            </svg>
+            Clear All Data
+          </button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ===== RESULTS MODAL ===== -->
+  <div class="modal-overlay" id="modal-overlay">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <div class="modal-header">
+        <div class="modal-icon">🏆</div>
+        <h2 class="modal-title" id="modal-title">Test Complete!</h2>
+        <p class="modal-subtitle">Here's how you did</p>
+      </div>
+
+      <div class="modal-stats">
+        <div class="modal-stat">
+          <div class="modal-stat-value" id="result-wpm">0</div>
+          <div class="modal-stat-label">Words Per Minute</div>
+        </div>
+        <div class="modal-stat-divider"></div>
+        <div class="modal-stat">
+          <div class="modal-stat-value" id="result-acc">0%</div>
+          <div class="modal-stat-label">Accuracy</div>
+        </div>
+        <div class="modal-stat-divider"></div>
+        <div class="modal-stat">
+          <div class="modal-stat-value" id="result-correct">0</div>
+          <div class="modal-stat-label">Correct Chars</div>
+        </div>
+        <div class="modal-stat-divider"></div>
+        <div class="modal-stat">
+          <div class="modal-stat-value" id="result-errors">0</div>
+          <div class="modal-stat-label">Errors</div>
+        </div>
+      </div>
+
+      <div class="performance-bar-wrapper">
+        <div class="perf-label">Performance</div>
+        <div class="performance-bar">
+          <div class="performance-fill" id="perf-fill"></div>
+        </div>
+        <div class="perf-range">
+          <span>0</span><span>40</span><span>80</span><span>120+</span>
+        </div>
+        <div class="perf-tag" id="perf-tag">Beginner</div>
+      </div>
+
+      <div class="modal-actions">
+        <button class="btn btn-primary" id="modal-restart">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M1 4v6h6M23 20v-6h-6"/>
+            <path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"/>
+          </svg>
+          Try Again
+        </button>
+        <button class="btn btn-ghost" id="modal-new">
+          New Text
+        </button>
+        <button class="btn btn-ghost" id="modal-home">
+          Back to Home
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <input type="text" id="hidden-input" class="hidden-input" autocomplete="off"
+         autocorrect="off" autocapitalize="off" spellcheck="false" aria-hidden="true" />
+
+  <script src="script.js"></script>
+</body>
+</html>
