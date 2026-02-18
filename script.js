@@ -231,7 +231,7 @@ let wordsContainer, typingArea, caretEl, hiddenInput, instructionBanner;
 let liveWpm, liveAcc, liveTimer, timerChip;
 let btnRestart, btnNewText, btnBack, themeToggle;
 let navHome, navStats, settingsBack;
-let modePractice, modeTest, modeGames, modeSettings;
+let modePractice, modeTest, modeGames;
 let modalOverlay, resultWpm, resultAcc, resultCorrect, resultErrors;
 let perfFill, perfTag, modalRestart, modalNew, modalHome;
 
@@ -266,7 +266,6 @@ function initializeElements() {
   modePractice     = document.getElementById('mode-practice');
   modeTest         = document.getElementById('mode-test');
   modeGames        = document.getElementById('mode-games');
-  modeSettings     = document.getElementById('mode-settings');
 
   // Modal
   modalOverlay     = document.getElementById('modal-overlay');
@@ -786,7 +785,10 @@ function setupEventListeners() {
   if (modePractice) modePractice.addEventListener('click', () => showPage('practice'));
   if (modeTest) modeTest.addEventListener('click', () => showPage('test'));
   if (modeGames) modeGames.addEventListener('click', () => showPage('games'));
-  if (modeSettings) modeSettings.addEventListener('click', () => showPage('settings'));
+
+  // Settings icon in header
+  const settingsIconBtn = document.getElementById('settings-icon-btn');
+  if (settingsIconBtn) settingsIconBtn.addEventListener('click', () => showPage('settings'));
 
   // Modal home button
   if (modalHome) modalHome.addEventListener('click', () => showPage('home'));
