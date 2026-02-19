@@ -10,31 +10,31 @@
     href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500;700&family=Roboto:wght@300;400;500&display=swap"
     rel="stylesheet"
   />
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 </head>
 <body>
 
   <!-- ===== HEADER ===== -->
   <header class="header">
     <div class="logo">
-      <span class="logo-icon">⌨</span>
+      <i class="fas fa-keyboard logo-icon"></i>
       <span class="logo-text">Typing <span class="logo-accent">Ustad</span></span>
     </div>
     <nav class="nav-stats">
       <!-- Home mode stats -->
       <div class="home-nav" id="home-nav">
         <button class="nav-btn" id="nav-home">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
-            <polyline points="9,22 9,12 15,12 15,22"/>
-          </svg>
+          <i class="fas fa-home"></i>
           Home
         </button>
         <button class="nav-btn" id="nav-stats">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M9 19c-5 0-8-3-8-6s3-6 8-6c4.5 0 7.5 2.5 8 6"/>
-            <path d="M12 21l3-9"/>
-          </svg>
+          <i class="fas fa-chart-line"></i>
           Stats
+        </button>
+        <button class="nav-btn" id="nav-about">
+          <i class="fas fa-info-circle"></i>
+          About
         </button>
       </div>
 
@@ -55,15 +55,12 @@
       </div>
 
       <button class="theme-toggle" id="settings-icon-btn" title="Settings" aria-label="Open Settings">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18">
-          <circle cx="12" cy="12" r="3"/>
-          <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
-        </svg>
+        <i class="fas fa-cog"></i>
       </button>
 
       <button class="theme-toggle" id="theme-toggle" title="Toggle theme" aria-label="Toggle dark/light theme">
-        <span class="sun-icon">☀️</span>
-        <span class="moon-icon">🌙</span>
+        <i class="fas fa-sun sun-icon"></i>
+        <i class="fas fa-moon moon-icon"></i>
       </button>
     </nav>
   </header>
@@ -78,7 +75,7 @@
     <div class="modes-grid">
       <!-- Practice Mode -->
       <div class="mode-card" id="mode-practice">
-        <div class="mode-icon">📝</div>
+        <div class="mode-icon"><i class="fas fa-edit"></i></div>
         <h3 class="mode-title">Practice</h3>
         <p class="mode-description">Free typing practice with custom texts and no time pressure</p>
         <div class="mode-features">
@@ -90,7 +87,7 @@
 
       <!-- Test Mode -->
       <div class="mode-card" id="mode-test">
-        <div class="mode-icon">⏱️</div>
+        <div class="mode-icon"><i class="fas fa-stopwatch"></i></div>
         <h3 class="mode-title">Speed Test</h3>
         <p class="mode-description">Timed typing tests to measure your WPM and accuracy</p>
         <div class="mode-features">
@@ -102,7 +99,7 @@
 
       <!-- Games Mode -->
       <div class="mode-card" id="mode-games">
-        <div class="mode-icon">🎮</div>
+        <div class="mode-icon"><i class="fas fa-gamepad"></i></div>
         <h3 class="mode-title">Games</h3>
         <p class="mode-description">Fun typing games and challenges to make learning enjoyable</p>
         <div class="mode-features">
@@ -142,10 +139,7 @@
     <!-- Back Button -->
     <div class="game-header">
       <button class="btn btn-ghost" id="btn-back">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="m12 19-7-7 7-7"/>
-          <path d="m19 12H5"/>
-        </svg>
+        <i class="fas fa-arrow-left"></i>
         Back to Home
       </button>
       <div class="game-mode-title" id="game-mode-title">Speed Test</div>
@@ -168,16 +162,11 @@
     <!-- Action Buttons -->
     <div class="action-bar">
       <button class="btn btn-ghost" id="btn-restart" title="Restart (Esc)">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M1 4v6h6M23 20v-6h-6"/>
-          <path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"/>
-        </svg>
+        <i class="fas fa-redo"></i>
         Restart <kbd>Esc</kbd>
       </button>
       <button class="btn btn-ghost" id="btn-new-text" title="New Text">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M12 20h9M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
-        </svg>
+        <i class="fas fa-file-alt"></i>
         New Text
       </button>
     </div>
@@ -201,7 +190,7 @@
           <div class="key" data-key="0">0</div>
           <div class="key" data-key="-">-</div>
           <div class="key" data-key="=">=</div>
-          <div class="key key-wide" data-key="Backspace">⌫</div>
+          <div class="key key-wide" data-key="Backspace"><i class="fas fa-backspace"></i></div>
         </div>
 
         <div class="key-row">
@@ -234,7 +223,7 @@
           <div class="key" data-key="l">L</div>
           <div class="key" data-key=";">;</div>
           <div class="key" data-key="'">'</div>
-          <div class="key key-enter" data-key="Enter">Enter</div>
+          <div class="key key-enter" data-key="Enter"><i class="fas fa-level-down-alt"></i></div>
         </div>
 
         <div class="key-row">
@@ -267,10 +256,7 @@
   <main class="settings-container" id="settings-container" style="display: none;">
     <div class="settings-header">
       <button class="btn btn-ghost" id="settings-back">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="m12 19-7-7 7-7"/>
-          <path d="m19 12H5"/>
-        </svg>
+        <i class="fas fa-arrow-left"></i>
         Back
       </button>
       <h1 class="settings-title">Settings</h1>
@@ -279,7 +265,7 @@
     <div class="settings-grid">
       <!-- Typing Settings -->
       <div class="settings-section">
-        <h3 class="section-title">🎯 Typing Settings</h3>
+        <h3 class="section-title"><i class="fas fa-bullseye"></i> Typing Settings</h3>
         
         <div class="setting-item">
           <label class="setting-label">Test Duration</label>
@@ -325,7 +311,7 @@
 
       <!-- Display Settings -->
       <div class="settings-section">
-        <h3 class="section-title">🎨 Display Settings</h3>
+        <h3 class="section-title"><i class="fas fa-palette"></i> Display Settings</h3>
         
         <div class="setting-item">
           <label class="setting-label">Theme</label>
@@ -360,7 +346,7 @@
 
       <!-- Game Settings -->
       <div class="settings-section">
-        <h3 class="section-title">🎮 Game Settings</h3>
+        <h3 class="section-title"><i class="fas fa-gamepad"></i> Game Settings</h3>
         
         <div class="setting-item setting-toggle">
           <label class="setting-label">Stop on Error</label>
@@ -392,38 +378,105 @@
 
       <!-- Data Settings -->
       <div class="settings-section">
-        <h3 class="section-title">📊 Data Settings</h3>
+        <h3 class="section-title"><i class="fas fa-chart-bar"></i> Data Settings</h3>
         
         <div class="setting-item">
           <button class="btn btn-ghost" id="export-data">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-              <polyline points="7,10 12,15 17,10"/>
-              <line x1="12" y1="15" x2="12" y2="3"/>
-            </svg>
+            <i class="fas fa-download"></i>
             Export Statistics
           </button>
         </div>
 
         <div class="setting-item">
           <button class="btn btn-ghost" id="reset-stats">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M1 4v6h6M23 20v-6h-6"/>
-              <path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"/>
-            </svg>
+            <i class="fas fa-redo"></i>
             Reset All Statistics
           </button>
         </div>
 
         <div class="setting-item">
           <button class="btn btn-ghost" id="clear-data">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <polyline points="3,6 5,6 21,6"/>
-              <path d="m19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
-            </svg>
+            <i class="fas fa-trash"></i>
             Clear All Data
           </button>
         </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ===== ABOUT PAGE ===== -->
+  <main class="about-container" id="about-container" style="display: none;">
+    <div class="about-header">
+      <button class="btn btn-ghost" id="about-back">
+        <i class="fas fa-arrow-left"></i>
+        Back
+      </button>
+      <h1 class="about-title">About Typing Ustad</h1>
+    </div>
+
+    <div class="about-content">
+      <div class="about-section">
+        <div class="about-hero">
+          <i class="fas fa-keyboard about-icon"></i>
+          <h2>Master Your Typing Skills</h2>
+          <p>Typing Ustad is a modern, feature-rich typing practice application designed to help you improve your typing speed and accuracy through engaging exercises and tests.</p>
+        </div>
+      </div>
+
+      <div class="about-grid">
+        <div class="feature-card">
+          <i class="fas fa-tachometer-alt"></i>
+          <h3>Speed Tests</h3>
+          <p>Accurate WPM measurement with detailed statistics and progress tracking.</p>
+        </div>
+
+        <div class="feature-card">
+          <i class="fas fa-edit"></i>
+          <h3>Practice Mode</h3>
+          <p>Unlimited practice sessions with no time pressure for skill building.</p>
+        </div>
+
+        <div class="feature-card">
+          <i class="fas fa-keyboard"></i>
+          <h3>Visual Keyboard</h3>
+          <p>Interactive keyboard highlighting to learn proper finger placement.</p>
+        </div>
+
+        <div class="feature-card">
+          <i class="fas fa-chart-line"></i>
+          <h3>Progress Tracking</h3>
+          <p>Comprehensive statistics to monitor your improvement over time.</p>
+        </div>
+
+        <div class="feature-card">
+          <i class="fas fa-palette"></i>
+          <h3>Customizable</h3>
+          <p>Dark/light themes, font sizes, and various display options.</p>
+        </div>
+
+        <div class="feature-card">
+          <i class="fas fa-mobile-alt"></i>
+          <h3>Responsive</h3>
+          <p>Works perfectly on desktop, tablet, and mobile devices.</p>
+        </div>
+      </div>
+
+      <div class="about-section">
+        <h3><i class="fas fa-info-circle"></i> Version Information</h3>
+        <div class="version-info">
+          <p><strong>Version:</strong> 1.0.0</p>
+          <p><strong>Last Updated:</strong> February 2026</p>
+          <p><strong>Technology:</strong> HTML5, CSS3, JavaScript</p>
+        </div>
+      </div>
+
+      <div class="about-section">
+        <h3><i class="fas fa-heart"></i> Acknowledgments</h3>
+        <p>Inspired by modern typing applications like MonkeyType and TypingClub, Typing Ustad combines the best features in a clean, accessible interface.</p>
+      </div>
+
+      <div class="about-footer">
+        <p>Made with <i class="fas fa-heart text-accent"></i> for typing enthusiasts worldwide</p>
       </div>
     </div>
   </main>
@@ -432,7 +485,7 @@
   <div class="modal-overlay" id="modal-overlay">
     <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
       <div class="modal-header">
-        <div class="modal-icon">🏆</div>
+        <div class="modal-icon"><i class="fas fa-trophy"></i></div>
         <h2 class="modal-title" id="modal-title">Test Complete!</h2>
         <p class="modal-subtitle">Here's how you did</p>
       </div>
@@ -472,10 +525,7 @@
 
       <div class="modal-actions">
         <button class="btn btn-primary" id="modal-restart">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M1 4v6h6M23 20v-6h-6"/>
-            <path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"/>
-          </svg>
+          <i class="fas fa-redo"></i>
           Try Again
         </button>
         <button class="btn btn-ghost" id="modal-new">

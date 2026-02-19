@@ -46,7 +46,7 @@ applyTheme(savedTheme);
 // ============================================================
 // 0. APP STATE & NAVIGATION
 // ============================================================
-let currentPage = 'home'; // 'home', 'practice', 'test', 'games', 'settings'
+let currentPage = 'home'; // 'home', 'practice', 'test', 'games', 'settings', 'about'
 let currentMode = 'test';   // 'practice', 'test', 'games'
 
 // ============================================================
@@ -182,12 +182,14 @@ function showPage(page) {
   const homeContainer = document.getElementById('home-container');
   const gameContainer = document.getElementById('game-container');
   const settingsContainer = document.getElementById('settings-container');
+  const aboutContainer = document.getElementById('about-container');
   const homeNav = document.getElementById('home-nav');
   const gameStats = document.getElementById('game-stats');
   
   if (homeContainer) homeContainer.style.display = 'none';
   if (gameContainer) gameContainer.style.display = 'none';
   if (settingsContainer) settingsContainer.style.display = 'none';
+  if (aboutContainer) aboutContainer.style.display = 'none';
   if (homeNav) homeNav.style.display = 'none';
   if (gameStats) gameStats.style.display = 'none';
   
@@ -221,6 +223,11 @@ function showPage(page) {
       if (homeNav) homeNav.style.display = 'flex';
       loadSettingsUI();
       break;
+      
+    case 'about':
+      if (aboutContainer) aboutContainer.style.display = 'block';
+      if (homeNav) homeNav.style.display = 'flex';
+      break;
   }
 }
 
@@ -230,7 +237,7 @@ function showPage(page) {
 let wordsContainer, typingArea, caretEl, hiddenInput, instructionBanner;
 let liveWpm, liveAcc, liveTimer, timerChip;
 let btnRestart, btnNewText, btnBack, themeToggle;
-let navHome, navStats, settingsBack;
+let navHome, navStats, navAbout, settingsBack, aboutBack;
 let modePractice, modeTest, modeGames;
 let modalOverlay, resultWpm, resultAcc, resultCorrect, resultErrors;
 let perfFill, perfTag, modalRestart, modalNew, modalHome;
@@ -260,7 +267,9 @@ function initializeElements() {
   // Navigation
   navHome          = document.getElementById('nav-home');
   navStats         = document.getElementById('nav-stats');
+  navAbout         = document.getElementById('nav-about');
   settingsBack     = document.getElementById('settings-back');
+  aboutBack        = document.getElementById('about-back');
 
   // Mode cards
   modePractice     = document.getElementById('mode-practice');
@@ -397,7 +406,10 @@ function positionCaret() {
 // 5. KEYBOARD HANDLING
 // ============================================================
 function handleKeyDown(e) {
-  if (state.finished || currentPage !== 'practice' && currentPage !== 'test' && currentPage !== 'games') return;
+  if (state.finished || 
+      (currentPage !== 'practice' && currentPage !== 'test' && currentPage !== 'games')) {
+    return;
+  }
 
   // Start the game on first keypress
   if (!state.started) {
@@ -587,7 +599,7 @@ function animateKeyPress(key) {
 }
 
 // ============================================================
-// 9. GAME OVER (Updated)
+// 9. GAME OVER (Updated with FontAwesome icons)
 // ============================================================
 function endGame() {
   if (state.finished) return;
@@ -632,15 +644,16 @@ function endGame() {
     if (perfFill) perfFill.style.width = fillPct + '%'; 
   }, 100);
 
-  // Performance tag
+  // Performance tag with FontAwesome icons
   let tag = 'Beginner';
-  if      (finalWpm >= 100) tag = '🚀 Speed Demon';
-  else if (finalWpm >= 80)  tag = '⚡ Advanced';
-  else if (finalWpm >= 60)  tag = '🔥 Proficient';
-  else if (finalWpm >= 40)  tag = '✨ Intermediate';
-  else if (finalWpm >= 20)  tag = '📈 Progressing';
-  else                      tag = '🌱 Beginner';
-  if (perfTag) perfTag.textContent = tag;
+  if      (finalWpm >= 100) tag = '<i class="fas fa-rocket"></i> Speed Demon';
+  else if (finalWpm >= 80)  tag = '<i class="fas fa-bolt"></i> Advanced';
+  else if (finalWpm >= 60)  tag = '<i class="fas fa-fire"></i> Proficient';
+  else if (finalWpm >= 40)  tag = '<i class="fas fa-star"></i> Intermediate';
+  else if (finalWpm >= 20)  tag = '<i class="fas fa-chart-line"></i> Progressing';
+  else                      tag = '<i class="fas fa-seedling"></i> Beginner';
+  
+  if (perfTag) perfTag.innerHTML = tag;
 
   // Show modal with slight delay for animation
   setTimeout(() => { 
@@ -730,7 +743,7 @@ function clearAllData() {
 }
 
 // ============================================================
-// 11. EVENT LISTENERS SETUP
+// 11. EVENT LISTENERS SETUP (Updated)
 // ============================================================
 function setupEventListeners() {
   // Window-level keydown for seamless MonkeyType feel
@@ -778,7 +791,9 @@ function setupEventListeners() {
   // Navigation events
   if (navHome) navHome.addEventListener('click', () => showPage('home'));
   if (navStats) navStats.addEventListener('click', () => showPage('home'));
+  if (navAbout) navAbout.addEventListener('click', () => showPage('about'));
   if (settingsBack) settingsBack.addEventListener('click', () => showPage('home'));
+  if (aboutBack) aboutBack.addEventListener('click', () => showPage('home'));
   if (btnBack) btnBack.addEventListener('click', () => showPage('home'));
 
   // Mode selection events
